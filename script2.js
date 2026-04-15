@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════════
-   CART-ZY · app.js
-   Backend: http://localhost:3001 (Fastify)
-═══════════════════════════════════════════ */
-
 const API = "http://localhost:3001";
 
 /* ── STATE ── */
