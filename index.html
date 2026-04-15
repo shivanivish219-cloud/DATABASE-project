@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CART-ZY</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- ══════════ TOPBAR ══════════ -->
+    <div class="topbar">
+      <span>⚡ Free Delivery on orders above ₹999</span>
+      <span class="tb-sep">|</span>
+      <span>Easy 30-Day Returns</span>
+      <span class="tb-sep">|</span>
+      <span>100% Authentic Products</span>
+    </div>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+    <header class="navbar" id="navbar">
+      <div class="nav-wrap">
+        <!-- LOGO -->
+        <div class="logo" onclick="goHome()">
+          <span class="logo-c">CART</span><span class="logo-z">-ZY</span>
+        </div>
+
+        <!-- NAV LINKS -->
+        <nav class="nav-links">
+          <button
+            class="nl active"
+            data-cat="all"
+            onclick="navCat('all', this)"
+          >
+            ALL
+          </button>
+          <button
+            class="nl"
+            data-cat="Electronics"
+            onclick="navCat('Electronics', this)"
+          >
+            ELECTRONICS
+          </button>
+          <button
+            class="nl"
+            data-cat="Clothing"
+            onclick="navCat('Clothing', this)"
+          >
+            CLOTHING
+          </button>
+          <button class="nl" data-cat="Books" onclick="navCat('Books', this)">
+            BOOKS
+          </button>
+          <button class="nl" data-cat="Sports" onclick="navCat('Sports', this)">
+            SPORTS
+          </button>
+          <button class="nl" data-cat="Home" onclick="navCat('Home', this)">
+            HOME
+          </button>
+          <button class="nl" data-cat="Beauty" onclick="navCat('Beauty', this)">
+            BEAUTY
+          </button>
+          <button class="nl" data-cat="Toys" onclick="navCat('Toys', this)">
+            TOYS
+          </button>
+        </nav>
+
+        <!-- RIGHT ACTIONS -->
+        <div class="nav-right">
+          <!-- SEARCH -->
+          <div class="search-wrap">
+            <i class="fas fa-search s-icon"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search products, brands…"
+              autocomplete="off"
+            />
+            <button
+              class="s-clear"
+              id="sClear"
+              onclick="clearSearch()"
+              style="display: none"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <button class="nav-act" onclick="openLoginModal()" id="userBtn">
+            <i class="fas fa-user"></i>
+            <span id="userLabel">Login</span>
+          </button>
+
+          <button class="nav-act" onclick="openAddProductModal()">
+            <i class="fas fa-plus"></i>
+            <span>Sell</span>
+          </button>
+
+          <button class="nav-act cart-act" id="cartBtn" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Bag</span>
+            <span class="cart-count" id="cartBadge">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STATS STRIP inside navbar ── -->
+      <div class="nav-stats" id="navStats">
+        <div class="ns-item">
+          <i class="fas fa-box-open ns-icon"></i>
+          <span class="ns-num" id="statProducts">—</span>
+          <span class="ns-lbl">Products</span>
+        </div>
+        <div class="ns-sep"></div>
+        <div class="ns-item">
+          <i class="fas fa-tags ns-icon"></i>
+          <span class="ns-num">7</span>
+          <span class="ns-lbl">Categories</span>
+        </div>
+        <div class="ns-sep"></div>
+        <div class="ns-item">
+          <i class="fas fa-store ns-icon"></i>
+          <span class="ns-num" id="statBrands">—</span>
+          <span class="ns-lbl">Brands</span>
+        </div>
+        <div class="ns-sep"></div>
+        <div class="ns-item">
+          <i class="fas fa-rupee-sign ns-icon"></i>
+          <span class="ns-num" id="statAvgPrice">—</span>
+          <span class="ns-lbl">Avg Price</span>
+        </div>
+        <div class="ns-sep"></div>
+        <div class="ns-item">
+          <i class="fas fa-warehouse ns-icon"></i>
+          <span class="ns-num" id="statStock">—</span>
+          <span class="ns-lbl">In Stock</span>
+        </div>
+        <div class="ns-sep"></div>
+        <div class="ns-item">
+          <i class="fas fa-star ns-icon" style="color: #f5c842"></i>
+          <span class="ns-num" id="statAvgRating">—</span>
+          <span class="ns-lbl">Avg Rating</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <p class="hero-tag">NEW ARRIVALS · SUMMER 2025</p>
+        <h1 class="hero-h1">Everything<br /><em>You Love.</em></h1>
+        <p class="hero-sub">
+          Electronics · Books · Toys · Fashion · Sports · Beauty & Home
+        </p>
+        <button class="hero-btn" onclick="scrollToShop()">
+          Shop Now <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card hc1">
+          <span>📱</span>
+          <p>Electronics</p>
+        </div>
+        <div class="hero-card hc2">
+          <span>📚</span>
+          <p>Books</p>
+        </div>
+        <div class="hero-card hc3">
+          <span>🧸</span>
+          <p>Toys</p>
+        </div>
+        <div class="hero-card hc4">
+          <span>👗</span>
+          <p>Clothing</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SHOP BY CATEGORY ══════════ -->
+    <section class="cat-section" id="shopCats">
+      <div class="section-header">
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-sub">Explore what you love</p>
+      </div>
+      <div class="cat-grid">
+        <div
+          class="cat-card"
+          onclick="
+            navCat(
+              'Electronics',
+              document.querySelector('[data-cat=Electronics]'),
+            )
+          "
+        >
+          <div class="cat-emoji">📱</div>
+          <div class="cat-name">Electronics</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="
+            navCat('Clothing', document.querySelector('[data-cat=Clothing]'))
+          "
+        >
+          <div class="cat-emoji">👗</div>
+          <div class="cat-name">Clothing</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="navCat('Books', document.querySelector('[data-cat=Books]'))"
+        >
+          <div class="cat-emoji">📚</div>
+          <div class="cat-name">Books</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="
+            navCat('Sports', document.querySelector('[data-cat=Sports]'))
+          "
+        >
+          <div class="cat-emoji">⚽</div>
+          <div class="cat-name">Sports</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="navCat('Home', document.querySelector('[data-cat=Home]'))"
+        >
+          <div class="cat-emoji">🏡</div>
+          <div class="cat-name">Home</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="
+            navCat('Beauty', document.querySelector('[data-cat=Beauty]'))
+          "
+        >
+          <div class="cat-emoji">💄</div>
+          <div class="cat-name">Beauty</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div
+          class="cat-card"
+          onclick="navCat('Toys', document.querySelector('[data-cat=Toys]'))"
+        >
+          <div class="cat-emoji">🧸</div>
+          <div class="cat-name">Toys</div>
+          <div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SHOP SECTION ══════════ -->
+    <section class="shop-section" id="shopSection">
+      <div class="shop-wrap">
+        <!-- SIDEBAR FILTERS -->
+        <aside class="filter-panel" id="filterPanel">
+          <div class="fp-header">
+            <span class="fp-title">FILTERS</span>
+            <button class="fp-clear" onclick="clearFilters()">CLEAR ALL</button>
+          </div>
+
+          <!-- CATEGORY FILTER -->
+          <div class="fp-block">
+            <div class="fp-block-title" onclick="toggleBlock(this)">
+              CATEGORY <i class="fas fa-chevron-down fp-chev"></i>
+            </div>
+            <div class="fp-block-body">
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="all"
+                  checked
+                  onchange="setCatFilter('all')"
+                />
+                All</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Electronics"
+                  onchange="setCatFilter('Electronics')"
+                />
+                Electronics</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Clothing"
+                  onchange="setCatFilter('Clothing')"
+                />
+                Clothing</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Books"
+                  onchange="setCatFilter('Books')"
+                />
+                Books</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Sports"
+                  onchange="setCatFilter('Sports')"
+                />
+                Sports</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Home"
+                  onchange="setCatFilter('Home')"
+                />
+                Home</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Beauty"
+                  onchange="setCatFilter('Beauty')"
+                />
+                Beauty</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fcat"
+                  value="Toys"
+                  onchange="setCatFilter('Toys')"
+                />
+                Toys</label
+              >
+            </div>
+          </div>
+
+          <!-- PRICE FILTER -->
+          <div class="fp-block">
+            <div class="fp-block-title" onclick="toggleBlock(this)">
+              PRICE RANGE <i class="fas fa-chevron-down fp-chev"></i>
+            </div>
+            <div class="fp-block-body">
+              <div class="price-display">
+                ₹<span id="priceMin">0</span> — ₹<span id="priceMax"
+                  >2,00,000</span
+                >
+              </div>
+              <div class="dual-slider">
+                <input
+                  type="range"
+                  id="sliderMin"
+                  min="0"
+                  max="200000"
+                  value="0"
+                  step="500"
+                  oninput="syncSliders()"
+                />
+                <input
+                  type="range"
+                  id="sliderMax"
+                  min="0"
+                  max="200000"
+                  value="200000"
+                  step="500"
+                  oninput="syncSliders()"
+                />
+              </div>
+              <div class="price-presets">
+                <button class="pp-btn" onclick="setPreset(0, 500)">
+                  Under ₹500
+                </button>
+                <button class="pp-btn" onclick="setPreset(500, 2000)">
+                  ₹500–2K
+                </button>
+                <button class="pp-btn" onclick="setPreset(2000, 10000)">
+                  ₹2K–10K
+                </button>
+                <button class="pp-btn" onclick="setPreset(10000, 200000)">
+                  ₹10K+
+                </button>
+              </div>
+              <button class="fp-apply" onclick="applyFilters()">
+                Apply Price
+              </button>
+            </div>
+          </div>
+
+          <!-- RATING FILTER -->
+          <div class="fp-block">
+            <div class="fp-block-title" onclick="toggleBlock(this)">
+              CUSTOMER RATING <i class="fas fa-chevron-down fp-chev"></i>
+            </div>
+            <div class="fp-block-body">
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="frat"
+                  value=""
+                  checked
+                  onchange="setRatFilter('')"
+                />
+                All Ratings</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="frat"
+                  value="4"
+                  onchange="setRatFilter('4')"
+                />
+                ⭐⭐⭐⭐ 4+ Stars</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="frat"
+                  value="3"
+                  onchange="setRatFilter('3')"
+                />
+                ⭐⭐⭐ 3+ Stars</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="frat"
+                  value="2"
+                  onchange="setRatFilter('2')"
+                />
+                ⭐⭐ 2+ Stars</label
+              >
+            </div>
+          </div>
+
+          <!-- SORT FILTER -->
+          <div class="fp-block">
+            <div class="fp-block-title" onclick="toggleBlock(this)">
+              SORT BY <i class="fas fa-chevron-down fp-chev"></i>
+            </div>
+            <div class="fp-block-body">
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fsort"
+                  value="createdAt|DESC"
+                  checked
+                  onchange="setSortFilter('createdAt', 'DESC')"
+                />
+                Newest First</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fsort"
+                  value="price|ASC"
+                  onchange="setSortFilter('price', 'ASC')"
+                />
+                Price: Low to High</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fsort"
+                  value="price|DESC"
+                  onchange="setSortFilter('price', 'DESC')"
+                />
+                Price: High to Low</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fsort"
+                  value="rating|DESC"
+                  onchange="setSortFilter('rating', 'DESC')"
+                />
+                Top Rated</label
+              >
+              <label class="fp-check"
+                ><input
+                  type="radio"
+                  name="fsort"
+                  value="title|ASC"
+                  onchange="setSortFilter('title', 'ASC')"
+                />
+                Name A–Z</label
+              >
+            </div>
+          </div>
+        </aside>
+
+        <!-- PRODUCTS AREA -->
+        <div class="products-area">
+          <!-- TOOLBAR -->
+          <div class="prod-toolbar">
+            <div class="pt-left">
+              <span class="pt-label" id="resultLabel">Loading…</span>
+            </div>
+            <div class="pt-right">
+              <button class="mob-filter-btn" onclick="toggleFilterPanel()">
+                <i class="fas fa-sliders-h"></i> Filters
+              </button>
+              <div class="view-toggle">
+                <button
+                  class="vt-btn active"
+                  id="vGrid"
+                  onclick="setView('grid')"
+                >
+                  <i class="fas fa-th"></i>
+                </button>
+                <button class="vt-btn" id="vList" onclick="setView('list')">
+                  <i class="fas fa-bars"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACTIVE FILTERS CHIPS -->
+          <div
+            class="active-chips"
+            id="activeChips"
+            style="display: none"
+          ></div>
+
+          <!-- PRODUCT GRID -->
+          <div class="prod-grid" id="prodGrid">
+            <div class="loading-block" id="loadingEl">
+              <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <p>Loading products…</p>
+            </div>
+          </div>
+
+          <!-- PAGINATION -->
+          <div class="pagination-block" id="pagiBlock" style="display: none">
+            <div class="pagi-summary" id="pagiSummary"></div>
+            <div class="pagi-links" id="pagiLinks"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="f-logo">CART<span>-ZY</span></div>
+          <p>
+            Your one-stop destination for fashion, electronics, books, sports &
+            more. Shop smarter, live better.
+          </p>
+          <div class="f-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Categories</h5>
+          <a
+            href="#"
+            onclick="
+              navCat('Electronics', null);
+              return false;
+            "
+            >Electronics</a
+          >
+          <a
+            href="#"
+            onclick="
+              navCat('Clothing', null);
+              return false;
+            "
+            >Clothing</a
+          >
+          <a
+            href="#"
+            onclick="
+              navCat('Books', null);
+              return false;
+            "
+            >Books</a
+          >
+          <a
+            href="#"
+            onclick="
+              navCat('Sports', null);
+              return false;
+            "
+            >Sports</a
+          >
+          <a
+            href="#"
+            onclick="
+              navCat('Toys', null);
+              return false;
+            "
+            >Toys</a
+          >
+        </div>
+        <div class="footer-col">
+          <h5>Customer Care</h5>
+          <a href="#">Help Center</a>
+          <a href="#">Track My Order</a>
+          <a href="#">Returns & Refunds</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About CART-ZY</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 CART-ZY. All rights reserved.</span>
+        <div class="pay-row">
+          <span class="pay-chip">VISA</span>
+          <span class="pay-chip">Mastercard</span>
+          <span class="pay-chip">UPI</span>
+          <span class="pay-chip">COD</span>
+          <span class="pay-chip">EMI</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══════════ LOGIN MODAL ══════════ -->
+    <div class="modal-bg" id="loginModal">
+      <div class="modal login-modal">
+        <button class="modal-close" onclick="closeModal('loginModal')">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="lm-split">
+          <div class="lm-left">
+            <div class="lm-logo">CART<span>-ZY</span></div>
+            <p>Login to access your orders, wishlist and exclusive deals.</p>
+            <img
+              src="https://via.placeholder.com/140x160/1a1a2e/ff4d8d?text=🛍️"
+              alt=""
+              class="lm-img"
+              onerror="
+                this.style.fontSize = '5rem';
+                this.outerHTML = '<div style=font-size:5rem>🛍️</div>';
+              "
+            />
+          </div>
+          <div class="lm-right">
+            <div class="lm-tabs">
+              <button
+                class="lm-tab active"
+                onclick="switchTab(event, 'lf-login')"
+              >
+                Sign In
+              </button>
+              <button class="lm-tab" onclick="switchTab(event, 'lf-signup')">
+                Sign Up
+              </button>
+            </div>
+            <div id="lf-login" class="lf active">
+              <div class="lf-field">
+                <label>Email / Phone</label
+                ><input
+                  type="text"
+                  id="loginEmail"
+                  placeholder="you@email.com"
+                />
+              </div>
+              <div class="lf-field">
+                <label>Password</label
+                ><input
+                  type="password"
+                  id="loginPass"
+                  placeholder="Enter password"
+                />
+              </div>
+              <button class="lf-submit" onclick="handleLogin()">
+                Login <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+            <div id="lf-signup" class="lf">
+              <div class="lf-field">
+                <label>Full Name</label
+                ><input type="text" id="signupName" placeholder="Your Name" />
+              </div>
+              <div class="lf-field">
+                <label>Email</label
+                ><input
+                  type="email"
+                  id="signupEmail"
+                  placeholder="you@email.com"
+                />
+              </div>
+              <div class="lf-field">
+                <label>Password</label
+                ><input
+                  type="password"
+                  id="signupPass"
+                  placeholder="Min 6 characters"
+                />
+              </div>
+              <button class="lf-submit" onclick="handleSignup()">
+                Create Account <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+            <p class="lf-note">
+              By continuing, you agree to CART-ZY <a href="#">Terms</a> &
+              <a href="#">Privacy Policy</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CART DRAWER ══════════ -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+      <!-- HEADER -->
+      <div class="cd-header">
+        <div class="cd-title">
+          <i class="fas fa-shopping-bag"></i>
+          My Bag
+          <span class="cd-count" id="cdCount"></span>
+        </div>
+        <button class="cd-close" onclick="toggleCart()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- FREE DELIVERY BANNER -->
+      <div class="cd-banner" id="cdBanner">
+        <i class="fas fa-truck"></i> Add ₹<span id="cdFreeLeft">999</span> more
+        for FREE delivery!
+      </div>
+
+      <!-- ITEMS -->
+      <div class="cd-items" id="cdItems">
+        <!-- empty state -->
+        <div class="cd-empty" id="cdEmpty">
+          <div class="cde-icon">🛍️</div>
+          <p class="cde-title">Your bag is empty</p>
+          <p class="cde-sub">Looks like you haven't added anything yet.</p>
+          <button class="cde-btn" onclick="toggleCart()">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="cd-footer" id="cdFooter" style="display: none">
+        <div class="cd-price-rows">
+          <div class="cd-prow">
+            <span>Subtotal (<span id="cdItemCount">0</span> items)</span
+            ><span id="cdSubtotal">₹0</span>
+          </div>
+          <div class="cd-prow">
+            <span>Delivery Charges</span
+            ><span class="cd-free-tag"
+              >FREE
+              <s style="font-size: 0.72rem; color: var(--text3)">₹99</s></span
+            >
+          </div>
+          <div class="cd-prow cd-grand">
+            <span>Grand Total</span><span id="cdGrand">₹0</span>
+          </div>
+          <p class="cd-tax-note">
+            Inclusive of all taxes. Free returns within 30 days.
+          </p>
+        </div>
+        <button class="cd-checkout" onclick="doCheckout()">
+          <span>PLACE ORDER</span>
+          <span id="cdCheckoutAmt">₹0</span>
+        </button>
+        <button class="cd-continue" onclick="toggleCart()">
+          ← Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════ PRODUCT DETAIL MODAL ══════════ -->
+    <div class="modal-bg" id="detailModal">
+      <div class="modal detail-modal">
+        <button class="modal-close" onclick="closeModal('detailModal')">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="detailInner"></div>
+      </div>
+    </div>
+
+    <!-- ══════════ ADD PRODUCT MODAL ══════════ -->
+    <div class="modal-bg" id="addModal">
+      <div class="modal add-modal">
+        <button class="modal-close" onclick="closeModal('addModal')">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="add-head">
+          <h2>List Your Product</h2>
+          <p>Sell on CART-ZY and reach millions of shoppers</p>
+        </div>
+        <div class="add-body">
+          <div class="add-row">
+            <div class="lf-field">
+              <label>Product Title *</label
+              ><input
+                type="text"
+                id="apTitle"
+                placeholder="e.g. Premium Wireless Headphones"
+              />
+            </div>
+            <div class="lf-field">
+              <label>Brand *</label
+              ><input type="text" id="apBrand" placeholder="e.g. Sony" />
+            </div>
+          </div>
+          <div class="lf-field">
+            <label>Description *</label
+            ><textarea
+              id="apDesc"
+              rows="3"
+              placeholder="Describe your product in detail…"
+            ></textarea>
+          </div>
+          <div class="add-row">
+            <div class="lf-field">
+              <label>Price (₹) *</label
+              ><input type="number" id="apPrice" placeholder="999" min="0" />
+            </div>
+            <div class="lf-field">
+              <label>Category *</label>
+              <select id="apCat">
+                <option value="">Select category</option>
+                <option>Electronics</option>
+                <option>Clothing</option>
+                <option>Books</option>
+                <option>Sports</option>
+                <option>Home</option>
+                <option>Beauty</option>
+                <option>Toys</option>
+              </select>
+            </div>
+          </div>
+          <div class="add-row">
+            <div class="lf-field">
+              <label>Stock Quantity</label
+              ><input type="number" id="apStock" placeholder="100" min="0" />
+            </div>
+            <div class="lf-field">
+              <label>Rating (1–5)</label
+              ><input
+                type="number"
+                id="apRating"
+                placeholder="4.5"
+                min="1"
+                max="5"
+                step="0.1"
+              />
+            </div>
+          </div>
+          <button class="lf-submit" onclick="submitProduct()">
+            <i class="fas fa-upload"></i> Publish Product
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ TOAST ══════════ -->
+    <div class="toast" id="toast"></div>
+    <div
+      class="mob-filter-overlay"
+      id="mobFilterOverlay"
+      onclick="toggleFilterPanel()"
+    ></div>
+
+    <script src="script2.js"></script>
+  </body>
+</html>

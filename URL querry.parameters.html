@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Query Param Increment</title>
+  </head>
+
+  <body>
+    <h2>Increment Query Param</h2>
+
+    <input type="number" id="countInput" placeholder="Enter value" />
+    <button onclick="updateQuery()">Update URL</button>
+
+    <script>
+      // On page load → set input value from URL
+      window.onload = function () {
+        const url = new URL(window.location.href);
+        const count = url.searchParams.get("count");
+
+        if (count !== null) {
+          document.getElementById("countInput").value = count;
+        }
+      };
+
+      function updateQuery() {
+        const input = document.getElementById("countInput");
+        let value = parseInt(input.value) || 0;
+
+        // Increment
+        value++;
+
+        // Update input field
+        input.value = value;
+
+        // Update URL
+        const url = new URL(window.location.href);
+        url.searchParams.set("count", value);
+
+        // Update URL without reload
+        window.history.pushState({}, "", url);
+      }
+    </script>
+  </body>
+</html>

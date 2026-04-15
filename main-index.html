@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CART-ZY</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- 🔝 TOPBAR -->
+    <div class="topbar">
+      <span>⚡ Free Delivery on orders above ₹999</span>
+      <span>|</span>
+      <span>Easy 30-Day Returns</span>
+      <span>|</span>
+      <span>100% Authentic Products</span>
+    </div>
+
+    <!-- 🧭 NAVBAR -->
+    <header class="navbar">
+      <div class="nav-wrap">
+        <!-- LOGO -->
+        <div class="logo" onclick="location.reload()">
+          <span class="logo-c">CART</span><span class="logo-z">-ZY</span>
+        </div>
+
+        <!-- CATEGORY BUTTONS -->
+        <nav class="nav-links">
+          <button onclick="navCat('all', this)" class="nl active">ALL</button>
+          <button onclick="navCat('Electronics', this)" class="nl">
+            ELECTRONICS
+          </button>
+          <button onclick="navCat('Clothing', this)" class="nl">
+            CLOTHING
+          </button>
+          <button onclick="navCat('Books', this)" class="nl">BOOKS</button>
+          <button onclick="navCat('Sports', this)" class="nl">SPORTS</button>
+          <button onclick="navCat('Home', this)" class="nl">HOME</button>
+          <button onclick="navCat('Beauty', this)" class="nl">BEAUTY</button>
+          <button onclick="navCat('Toys', this)" class="nl">TOYS</button>
+        </nav>
+
+        <!-- RIGHT ACTIONS -->
+        <div class="nav-right">
+          <!-- 🔍 SEARCH -->
+          <div class="search-wrap">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search products..."
+            />
+            <button onclick="clearSearch()">✖</button>
+          </div>
+
+          <!-- 👤 USER -->
+          <button class="nav-act">
+            <i class="fas fa-user"></i>
+            <span>Login</span>
+          </button>
+
+          <!-- ➕ SELL -->
+          <button class="nav-act" onclick="openAddProductModal()">
+            <i class="fas fa-plus"></i>
+            <span>Sell</span>
+          </button>
+
+          <!-- 🛍 BAG -->
+          <button class="nav-act" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Bag</span>
+            <span id="cartBadge">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 📊 STATS -->
+      <div class="nav-stats">
+        <span>Total Products: <b id="statProducts">0</b></span>
+        <span> | Brands: <b id="statBrands">0</b></span>
+        <span> | Avg Price: <b id="statAvgPrice">₹0</b></span>
+        <span> | Stock: <b id="statStock">0</b></span>
+      </div>
+    </header>
+
+    <!-- 🎯 HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Everything You Love</h1>
+        <p>Shop Electronics · Fashion · Books · More</p>
+        <button
+          onclick="document.getElementById('shopSection').scrollIntoView()"
+        >
+          Shop Now
+        </button>
+      </div>
+    </section>
+
+    <!-- 🎛 FILTER SECTION -->
+    <section id="filterSection">
+      <!-- Filter UI handled by filter.js -->
+    </section>
+
+    <!-- 🛒 PRODUCT LIST -->
+    <section id="shopSection">
+      <div id="prodGrid"></div>
+    </section>
+
+    <!-- 📄 PAGINATION -->
+    <div id="pagiBlock">
+      <div id="pagiSummary"></div>
+      <div id="pagiLinks"></div>
+    </div>
+
+    <!-- 🛍 CART DRAWER -->
+    <div id="cartDrawer" class="cart-drawer">
+      <h2>Your Bag</h2>
+      <div id="cartItems"></div>
+
+      <div class="cart-footer">Total: ₹<span id="cartTotal">0</span></div>
+    </div>
+
+    <!-- ➕ ADD PRODUCT MODAL -->
+    <div id="addProductModal" style="display: none">
+      <h3>Add Product</h3>
+      <input type="text" id="prodTitle" placeholder="Product Name" />
+      <input type="number" id="prodPrice" placeholder="Price" />
+      <button onclick="addProduct()">Add</button>
+    </div>
+
+    <!-- 📊 STATS SECTION -->
+    <section id="statsSection">
+      <!-- stats.js updates this -->
+    </section>
+
+    <!-- 🔗 JS FILES -->
+    <script src="script2.js"></script>
+    <script src="filter.js"></script>
+    <script src="bag.js"></script>
+    <script src="nav-act.js"></script>
+    <script src="stats.js"></script>
+  </body>
+</html>
